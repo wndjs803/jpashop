@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -20,12 +21,19 @@ public class CartRepository {
         em.persist(cart);
     }
 
-    public void saveCartItem(CartItem cartItem) {
-        em.persist(cartItem);
-    }
-
     public Cart findByMember(Member member) {
         return  em.createQuery("select c from Cart c where c.member = :member", Cart.class)
                 .setParameter("member", member).getSingleResult();
     }
+
+    public void saveCartItem(CartItem cartItem) {
+        em.persist(cartItem);
+    }
+
+    public List<CartItem> findAll() {
+        return em.createQuery("select c from CartItem c", CartItem.class)
+                .getResultList();
+    }
+
+
 }
