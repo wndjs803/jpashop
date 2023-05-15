@@ -28,7 +28,7 @@ public class Cart {
     private List<CartItem> cartItems = new ArrayList<>();
 
     //==연관 관계 메서드 ==//
-    public void addOrderItem(CartItem cartItem){
+    public void addCartItem(CartItem cartItem){
         cartItems.add(cartItem);
         cartItem.setCart(this);
     }

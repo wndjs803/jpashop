@@ -31,7 +31,7 @@ public class CartService {
         cartRepository.saveCartItem(cartItem);
 
         // 장바구니 상품 추가
-        cart.addOrderItem(cartItem);
+        cart.addCartItem(cartItem);
 
         return cart.getId();
     }
