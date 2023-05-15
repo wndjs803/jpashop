@@ -1,6 +1,8 @@
 package jpa.book.jpashop.service;
 
+import jpa.book.jpashop.domain.Cart;
 import jpa.book.jpashop.domain.Member;
+import jpa.book.jpashop.repository.CartRepository;
 import jpa.book.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ public class MemberService {
 
     @Autowired
     private final MemberRepository memberRepository;
+    private final CartRepository cartRepository;
 
     // 회원 가입
     @Transactional
@@ -23,6 +26,8 @@ public class MemberService {
 
         validateDuplicateMember(member); // 중복 회원 검증
         memberRepository.save(member);
+        Cart cart = Cart.createCart(member);
+        cartRepository.save(cart);
         return member.getId();
     }
 
