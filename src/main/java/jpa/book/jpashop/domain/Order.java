@@ -80,7 +80,7 @@ public class Order {
         }
     }
 
-    //==조히 로직==//
+    //==조회 로직==//
     // 전체 주문 가격 조회
     public int getTotalPrice(){
         int totalPrice = 0;
